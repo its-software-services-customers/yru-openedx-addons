@@ -43,7 +43,8 @@
       {
         "type": "shell",
         "environment_vars": [
-          "PASSWORD={{user `ssh_password`}}"
+          "PASSWORD={{user `ssh_password`}}",
+          "ADMIN={{user `ssh_user`}}"
         ],        
         "script": "setup-manager.bash"
       }      

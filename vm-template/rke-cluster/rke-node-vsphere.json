@@ -1,0 +1,53 @@
+{
+    "variables": {
+      "vm_name":  "OPENEDX-RKE-NODE-TEMPLATE-1",
+      "vc_server": "{{env `vc_server`}}",
+      "vc_user": "{{env `vc_user`}}",
+      "vc_password": "{{env `vc_password`}}",
+      "ssh_user": "{{env `ssh_user`}}",
+      "ssh_password": "{{env `ssh_password`}}"
+    },
+
+    "builders": [
+      {
+        "type": "vsphere-clone",
+
+        "vcenter_server":      "{{user `vc_server`}}",
+        "username":            "{{user `vc_user`}}",
+        "password":            "{{user `vc_password`}}",
+        "insecure_connection": "true",
+  
+        "template": "OPENEDX-RKE-TEMPLATE-ORG",
+        "vm_name":  "{{user `vm_name`}}",
+        "cluster":  "HX-YRU-Cluster",
+        "datastore": "HCI-Datastore",
+        "resource_pool": "Mooc Cluster",
+        "network": "vm-network-105",
+
+        "ssh_username": "{{user `ssh_user`}}",
+        "ssh_password": "{{user `ssh_password`}}",
+  
+        "communicator": "ssh",
+        "convert_to_template": "false"
+      }
+    ],
+
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": [
+          "sleep 30"
+        ]
+      },
+
+      {
+        "type": "shell",
+        "environment_vars": [
+          "PASSWORD={{user `ssh_password`}}",
+          "ADMIN={{user `ssh_user`}}"
+        ],        
+        "script": "setup-rke-node.bash"
+      }      
+    ]   
+  }
+  
