@@ -37,4 +37,9 @@ if [ "$ACTION" = 'setup' ]; then
     then
         cd 01-setup/prometheus; ./setup-prometheus.bash; cd ${CWD}
     fi
+
+    if [[ $COMPONENT =~ ^(storage|all)$ ]]; 
+    then
+        cd 01-setup/storage; ./setup-storage.bash; cd ${CWD}
+    fi    
 fi

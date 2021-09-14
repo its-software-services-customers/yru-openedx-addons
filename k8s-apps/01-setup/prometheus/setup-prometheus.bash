@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo ""
+echo "### Setting up Prometheus operator ###"
+
 VERSION=${VAR_PROMETHEUS_VERSION}
 GIT_URL=https://github.com/prometheus-operator/kube-prometheus.git
 REPO_PATH=wip
