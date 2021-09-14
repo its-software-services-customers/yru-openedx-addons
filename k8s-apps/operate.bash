@@ -29,3 +29,11 @@ export ROOT_PATH=$(pwd); . ./98-utils/load-env.bash ${ENV}
 
 echo "Debug=[${TEST_ENV}]"
 kubectl get nodes
+
+CWD=$(pwd)
+
+if [ "$ACTION" = 'setup' ]; then
+    if [[ $COMPONENT =~ ^(prometheus|all)$ ]] then
+        cd 01-setup/prometheus; ./setup-prometheus.bash; cd ${CWD}
+    fi
+fi
