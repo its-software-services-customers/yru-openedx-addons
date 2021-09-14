@@ -12,6 +12,11 @@ if [ -z "$2" ]; then
     exit 1
 fi
 
+if [ -z "${KUECONFIG}" ]; then
+    echo "Need environment variable KUBECONFIG to be populated first!!!"
+    exit 1
+fi
+
 ENV=$1
 ACTION=$2
 COMPONENT=$3
@@ -21,7 +26,6 @@ if [ -z "$COMPONENT" ]; then
 fi
 
 export ROOT_PATH=$(pwd); . ./98-utils/load-env.bash ${ENV}
-export KUBECONFIG=${HOME}/rke-cluster/kubeconfig;
 
 echo "Debug=[${TEST_ENV}]"
 kubectl get nodes
