@@ -1,6 +1,6 @@
 {
     "variables": {
-      "vm_name":  "OPENEDX-RKE-NODE-TEMPLATE-1",
+      "vm_name":  "OPENEDX-RKE-NODE-TEMPLATE-UBT16-1",
       "vc_server": "{{env `vc_server`}}",
       "vc_user": "{{env `vc_user`}}",
       "vc_password": "{{env `vc_password`}}",
@@ -17,7 +17,7 @@
         "password":            "{{user `vc_password`}}",
         "insecure_connection": "true",
   
-        "template": "OPENEDX-RKE-TEMPLATE-ORG",
+        "template": "OPENEDX-RKE-TEMPLATE-UBUNTU16",
         "vm_name":  "{{user `vm_name`}}",
         "cluster":  "HX-YRU-Cluster",
         "datastore": "HCI-Datastore",
