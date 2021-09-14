@@ -16,3 +16,5 @@ sudo docker run \
 init
 
 sudo chown -R yruadmin:yruadmin rke-cluster
+
+export ROOT_PATH=$(pwd)
