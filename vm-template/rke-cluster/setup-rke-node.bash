@@ -10,10 +10,14 @@ echo "${PASSWORD}" | sudo -S ls -lrt
 
 sudo apt-get -y update
 
+#sudo snap install docker # Using snap will not work with RKE
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
 sudo groupadd docker
 sudo usermod -aG docker ${USER}
 
-sudo snap install docker
 sudo apt install unzip
 
 #NTP here
