@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#usage : operate.bash <development|production> <setup|deploy> [<component>]
+
 if [ -z "$1" ]; then
     echo "Argument <env> is required!!!"
     exit 1
@@ -19,5 +21,7 @@ if [ -z "$COMPONENT" ]; then
 fi
 
 export ROOT_PATH=$(pwd); . ./98-utils/load-env.bash ${ENV}
+export KUBECONFIG=${HOME}/rke-cluster/kubeconfig;
 
 echo "Debug=[${TEST_ENV}]"
+kubectl get nodes
