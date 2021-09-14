@@ -6,6 +6,6 @@ if [ -z "$1" ]; then
 fi
 
 ${ENV}=$1
-. ${ROOT_PATH}/load-env.bash ${ENV}
+. ./98-utils/load-env.bash ${ENV}
 
 echo "Debug=[${TEST_ENV}]"
