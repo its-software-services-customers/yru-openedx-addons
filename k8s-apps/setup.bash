@@ -6,6 +6,7 @@ if [ -z "$1" ]; then
 fi
 
 ${ENV}=$1
+export ROOT_PATH=$(pwd)
 . ./98-utils/load-env.bash ${ENV}
 
 echo "Debug=[${TEST_ENV}]"
