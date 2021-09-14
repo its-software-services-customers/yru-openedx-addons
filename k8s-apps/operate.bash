@@ -12,7 +12,7 @@ if [ -z "$2" ]; then
     exit 1
 fi
 
-if [ -z "${KUECONFIG}" ]; then
+if [ -z "${KUBECONFIG}" ]; then
     echo "Need environment variable KUBECONFIG to be populated first!!!"
     exit 1
 fi
