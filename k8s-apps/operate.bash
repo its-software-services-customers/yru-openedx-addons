@@ -33,7 +33,7 @@ kubectl get nodes
 CWD=$(pwd)
 
 if [ "$ACTION" = 'setup' ]; then
-    if [[ $COMPONENT =~ ^(prometheus|all)$ ]] then
+    if [ $COMPONENT =~ ^(prometheus|all)$ ]; then
         cd 01-setup/prometheus; ./setup-prometheus.bash; cd ${CWD}
     fi
 fi
