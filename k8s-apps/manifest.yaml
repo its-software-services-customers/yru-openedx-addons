@@ -1,0 +1,24 @@
+config:
+  defaultChartId: helm-dummy
+vars: {}
+
+charts:
+  helm-dummy:
+    chartUrl: https://notused/dummy/
+    version: 1.1.7
+
+  helm-prometheus-k8s:
+    chartUrl: https://its-software-services-devops.github.io/helm-prometheus-k8s/
+    version: 1.2.1
+
+  helm-grafana-k8s:
+    chartUrl: https://its-software-services-devops.github.io/helm-grafana-k8s/
+    version: 1.1.0
+
+  helm-loki:
+    chartUrl: https://its-software-services-devops.github.io/helm-loki/
+    version: 1.1.0-rc3
+
+copy: []
+
+infraIasc: []
