@@ -41,5 +41,10 @@ if [ "$ACTION" = 'setup' ]; then
     if [[ $COMPONENT =~ ^(storage|all)$ ]]; 
     then
         cd 01-setup/storage; ./setup-storage.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(cert-manager|all)$ ]]; 
+    then
+        cd 01-setup/cert-manager; ./setup-cert-manager.bash; cd ${CWD}
     fi    
 fi
