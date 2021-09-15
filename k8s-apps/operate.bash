@@ -48,3 +48,10 @@ if [ "$ACTION" = 'setup' ]; then
         cd 01-setup/cert-manager; ./setup-cert-manager.bash; cd ${CWD}
     fi    
 fi
+
+if [ "$ACTION" = 'deploy' ]; then
+    if [[ $COMPONENT =~ ^(nginx-svc|all)$ ]]; 
+    then
+        cd 02-deploy/nginx-svc; ./deploy-nginx-svc.bash; cd ${CWD}
+    fi
+fi
