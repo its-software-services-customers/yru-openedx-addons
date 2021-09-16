@@ -31,6 +31,10 @@ charts:
     chartUrl: https://external-secrets.github.io/kubernetes-external-secrets/
     version: 8.3.0
     
+  helm-grafana-k8s:
+    chartUrl: https://its-software-services-devops.github.io/helm-grafana-k8s/
+    version: 1.1.0
+
 copy: []
 
 infraIasc:
@@ -55,7 +59,7 @@ infraIasc:
 
   - valuesFiles: [02-deploy/prometheus/grafana-k8s.yaml]
     alias: rendered-grafana-k8s
-    chartId: helm-prometheus-k8s
+    chartId: helm-grafana-k8s
     toDir: 02-deploy/prometheus
     values: []
 
