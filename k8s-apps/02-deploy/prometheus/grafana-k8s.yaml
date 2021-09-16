@@ -1,0 +1,24 @@
+grafana:
+  fullnameOverride: grafana-k8s
+  image:
+    tag: 7.5.7
+    
+  envFromSecret: google-oidc-secret
+  envRenderSecret: {}
+
+  grafana.ini:
+    server:
+      root_url: https://grafana-k8s.<<VAR_CERT_CLUSTER_DOMAIN>>
+    auth.okta:
+      name: Okta
+      enabled: true
+      allow_sign_up: true
+      client_id: ${OKTA_CLIENT_ID}
+      client_secret: ${OKTA_CLIENT_SECRET}
+      scopes: openid profile email groups
+      auth_url: https://${OKTA_TENANT_ID}.okta.com/oauth2/v1/authorize
+      token_url: https://${OKTA_TENANT_ID}.okta.com/oauth2/v1/token
+      api_url: https://${OKTA_TENANT_ID}.okta.com/oauth2/v1/userinfo
+      allowed_domains:
+      allowed_groups: developer
+      role_attribute_path: 'Viewer'

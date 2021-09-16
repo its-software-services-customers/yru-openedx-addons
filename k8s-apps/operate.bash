@@ -25,6 +25,7 @@ if [ -z "$COMPONENT" ]; then
     COMPONENT='all'
 fi
 
+export KUBECONFIG=$(pwd)/kubeconfig
 export ROOT_PATH=$(pwd); . ./98-utils/load-env.bash ${ENV}
 
 echo "Debug=[${TEST_ENV}]"
@@ -41,5 +42,38 @@ if [ "$ACTION" = 'setup' ]; then
     if [[ $COMPONENT =~ ^(storage|all)$ ]]; 
     then
         cd 01-setup/storage; ./setup-storage.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(cert-manager|all)$ ]]; 
+    then
+        cd 01-setup/cert-manager; ./setup-cert-manager.bash; cd ${CWD}
+    fi    
+fi
+
+if [ "$ACTION" = 'deploy' ]; then
+    if [[ $COMPONENT =~ ^(nginx-svc|all)$ ]]; 
+    then
+        cd 02-deploy/nginx-svc; ./deploy-nginx-svc.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(external-secrets|all)$ ]]; 
+    then
+        cd 02-deploy/external-secrets; ./deploy-external-secrets.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(prometheus|all)$ ]]; 
+    then
+        cd 02-deploy/prometheus; ./deploy-prometheus-config.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(loki-log|all)$ ]]; 
+    then
+        cd 02-deploy/loki-log; ./deploy-loki-log.bash; cd ${CWD}
+    fi
+
+    # Put this to very last
+    if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
+    then
+        cd 02-deploy/certificates; ./deploy-certificates.bash; cd ${CWD}
     fi    
 fi
