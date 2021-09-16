@@ -8,15 +8,17 @@ grafana:
 
   grafana.ini:
     server:
-      root_url: https://grafana-k8s.<<VAR_NGINX_DOMAIN>>
-    auth.google:
+      root_url: https://grafana-k8s.<<VAR_CERT_CLUSTER_DOMAIN>>
+    auth.okta:
+      name: Okta
       enabled: true
       allow_sign_up: true
-      client_id: ${GOOGLE_CLIENT_ID}
-      client_secret: ${GOOGLE_CLIENT_SECRET}
-      scopes: https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
-      auth_url: https://accounts.google.com/o/oauth2/auth
-      token_url: https://accounts.google.com/o/oauth2/token
-      allowed_domains: everapp.io
-      #allowed_groups: developer
-      #role_attribute_path: contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'developer') && 'Editor' || 'Viewer'
+      client_id: ${OKTA_CLIENT_ID}
+      client_secret: ${OKTA_CLIENT_SECRET}
+      scopes: openid profile email groups
+      auth_url: https://${OKTA_TENANT_ID}.okta.com/oauth2/v1/authorize
+      token_url: https://${OKTA_TENANT_ID}.okta.com/oauth2/v1/token
+      api_url: https://${OKTA_TENANT_ID}.okta.com/oauth2/v1/userinfo
+      allowed_domains:
+      allowed_groups: developer
+      role_attribute_path: 'Viewer'

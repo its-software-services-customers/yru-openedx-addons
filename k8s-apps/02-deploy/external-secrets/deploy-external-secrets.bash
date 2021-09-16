@@ -28,6 +28,3 @@ kubectl delete secret ${SECRET} -n ${NS}
 kubectl create secret generic ${SECRET} \
 --from-file=gcp-creds.json=${KEY_FILE} \
 -n ${NS}
-
-
-kubectl apply -f test-ext-secret.yaml -n ${NS}
