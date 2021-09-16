@@ -13,3 +13,14 @@ global:
 issuers:
   - name: lets-encrypt-issuer
     email: <<VAR_CERT_LETENCRYPT_EMAIL>> #pjame.fb@gmail.com
+
+certificates:
+  - name: prometheus-k8s
+    secretName: prometheus-k8s-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: monitoring
+
+  - name: grafana-k8s
+    secretName: grafana-k8s-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: monitoring
