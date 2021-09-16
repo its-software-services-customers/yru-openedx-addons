@@ -54,4 +54,9 @@ if [ "$ACTION" = 'deploy' ]; then
     then
         cd 02-deploy/nginx-svc; ./deploy-nginx-svc.bash; cd ${CWD}
     fi
+
+    if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
+    then
+        cd 02-deploy/certificates; ./deploy-certificates.bash; cd ${CWD}
+    fi    
 fi

@@ -1,0 +1,15 @@
+global:
+  domain: <<VAR_CERT_CLUSTER_DOMAIN>> #yru-oedx.its-software-services.com
+  certNamespace: ingress-nginx
+  issuerNamespace: cert-manager
+  #envSuffix: ''
+  letsEncryptEnv: <<VAR_CERT_LETENCRYPT_ENV>> #prod or test
+  dns01:
+    cloudDNS:
+      project: <<VAR_CERT_SA_PROJECT>> #service account project for Cloud CDN
+      serviceAccountSecretRef:
+        name: gcp-cloud-dns-account-key
+        key: service-account.json
+issuers:
+  - name: lets-encrypt-issuer
+    email: <<VAR_CERT_LETENCRYPT_EMAIL>> #pjame.fb@gmail.com
