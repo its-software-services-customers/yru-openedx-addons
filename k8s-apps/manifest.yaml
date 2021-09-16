@@ -36,7 +36,7 @@ infraIasc:
     namespace: cert-manager
     toDir: 01-setup/cert-manager
 
-  - valuesFiles: [deploy/certificates/certificates.yaml]
+  - valuesFiles: [02-deploy/certificates/certificates.yaml]
     alias: rendered-cluster-certs
     chartId: helm-cluster-certificates
     toDir: deploy/certificates
