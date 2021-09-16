@@ -39,5 +39,5 @@ infraIasc:
   - valuesFiles: [02-deploy/certificates/certificates.yaml]
     alias: rendered-cluster-certs
     chartId: helm-cluster-certificates
-    toDir: deploy/certificates
+    toDir: 02-deploy/certificates
     values: []
