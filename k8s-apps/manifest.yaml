@@ -46,4 +46,5 @@ infraIasc:
     alias: rendered-prometheus-config
     chartId: helm-prometheus-k8s
     toDir: 02-deploy/prometheus
-    values: []
+    values:
+      - --set-string alertmanager.generic.config.alertNoti.slackUrl=${SEC.ALERT_NOTI_SLACK_URL}

@@ -25,6 +25,7 @@ if [ -z "$COMPONENT" ]; then
     COMPONENT='all'
 fi
 
+export KUBECONFIG=$(pwd)/kubeconfig
 export ROOT_PATH=$(pwd); . ./98-utils/load-env.bash ${ENV}
 
 echo "Debug=[${TEST_ENV}]"
