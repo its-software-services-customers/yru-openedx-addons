@@ -53,6 +53,12 @@ infraIasc:
     values:
       - --set-string alertmanager.generic.config.alertNoti.slackUrl=${SEC.ALERT_NOTI_SLACK_URL}
 
+  - valuesFiles: [02-deploy/prometheus/grafana-k8s.yaml]
+    alias: rendered-grafana-k8s
+    chartId: helm-prometheus-k8s
+    toDir: 02-deploy/prometheus
+    values: []
+
   - valuesFiles: [02-deploy/external-secrets/external-secrets.yaml]
     alias: rendered-external-secrets
     chartId: kubernetes-external-secrets
