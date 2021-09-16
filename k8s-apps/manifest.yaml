@@ -41,3 +41,9 @@ infraIasc:
     chartId: helm-cluster-certificates
     toDir: 02-deploy/certificates
     values: []
+
+  - valuesFiles: [02-deploy/prometheus/prometheus-alert-config.yaml]
+    alias: rendered-prometheus-config
+    chartId: helm-prometheus-k8s
+    toDir: 02-deploy/prometheus
+    values: []

@@ -55,6 +55,12 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/nginx-svc; ./deploy-nginx-svc.bash; cd ${CWD}
     fi
 
+    if [[ $COMPONENT =~ ^(prometheus|all)$ ]]; 
+    then
+        cd 02-deploy/prometheus; ./deploy-prometheus-config.bash; cd ${CWD}
+    fi   
+
+    # Put this to very last
     if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
     then
         cd 02-deploy/certificates; ./deploy-certificates.bash; cd ${CWD}
