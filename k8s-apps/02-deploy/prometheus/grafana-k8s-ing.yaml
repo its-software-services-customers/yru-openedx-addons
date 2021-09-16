@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
       - grafana-k8s.<<VAR_CERT_CLUSTER_DOMAIN>>
-      #secretName: grafana-k8s-cert
+      secretName: grafana-k8s-cert
   rules:
     - host: grafana-k8s.<<VAR_CERT_CLUSTER_DOMAIN>>
       http:
