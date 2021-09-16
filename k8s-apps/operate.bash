@@ -2,6 +2,8 @@
 
 #usage : operate.bash <development|production> <setup|deploy> [<component>]
 
+export KUBECONFIG=$(pwd)/kubeconfig
+
 if [ -z "$1" ]; then
     echo "Argument <env> is required!!!"
     exit 1
