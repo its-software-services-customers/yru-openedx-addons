@@ -61,6 +61,7 @@ infraIasc:
     alias: rendered-grafana-k8s
     chartId: helm-grafana-k8s
     toDir: 02-deploy/prometheus
+    namespace: monitoring
     values: []
 
   - valuesFiles: [02-deploy/external-secrets/external-secrets.yaml]
