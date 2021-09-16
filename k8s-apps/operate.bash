@@ -64,7 +64,12 @@ if [ "$ACTION" = 'deploy' ]; then
     if [[ $COMPONENT =~ ^(prometheus|all)$ ]]; 
     then
         cd 02-deploy/prometheus; ./deploy-prometheus-config.bash; cd ${CWD}
-    fi   
+    fi
+
+    if [[ $COMPONENT =~ ^(loki-log|all)$ ]]; 
+    then
+        cd 02-deploy/loki-log; ./deploy-loki-log.bash; cd ${CWD}
+    fi
 
     # Put this to very last
     if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 

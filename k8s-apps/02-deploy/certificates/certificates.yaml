@@ -24,3 +24,8 @@ certificates:
     secretName: grafana-k8s-cert
     issuerRef: lets-encrypt-issuer
     namespace: monitoring
+
+  - name: grafana-loki
+    secretName: grafana-loki-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: loki-log

@@ -1,0 +1,33 @@
+---
+#Loki stack fro cluster container logs
+loki-stack:
+  enabled: true
+  fullnameOverride: loki-cluster-logging
+
+  loki:
+    persistence:
+      enabled: true
+
+  grafana:
+    envFromSecret: google-oidc-secret
+    envRenderSecret: {}
+
+    image:
+      tag: 7.5.7
+
+    grafana.ini:
+      server:
+        root_url: https://grafana-loki.<<VAR_CERT_CLUSTER_DOMAIN>>
+      auth.okta:
+        name: Okta
+        enabled: true
+        allow_sign_up: true
+        client_id: ${OKTA_CLIENT_ID}
+        client_secret: ${OKTA_CLIENT_SECRET}
+        scopes: openid profile email groups
+        auth_url: https://${OKTA_TENANT_ID}.okta.com/oauth2/v1/authorize
+        token_url: https://${OKTA_TENANT_ID}.okta.com/oauth2/v1/token
+        api_url: https://${OKTA_TENANT_ID}.okta.com/oauth2/v1/userinfo
+        allowed_domains:
+        allowed_groups: developer
+        role_attribute_path: to_string('Editor')
