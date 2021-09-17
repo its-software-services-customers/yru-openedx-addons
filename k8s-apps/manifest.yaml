@@ -89,9 +89,9 @@ infraIasc:
     namespace: memcached
     values: []
 
-  - valuesFiles: [deploy/platform-monitor/prometheus-stack.yaml]
+  - valuesFiles: [02-deploy/platform-monitor/prometheus-stack.yaml]
     alias: rendered-prometheus-stack
     chartId: kube-prometheus-stack
-    toDir: deploy/platform-monitor
+    toDir: 02-deploy/platform-monitor
     namespace: platform-monitor
     values: []
