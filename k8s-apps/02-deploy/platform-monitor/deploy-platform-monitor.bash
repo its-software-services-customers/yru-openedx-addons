@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NS=platform-monitoring
+NS=platform-monitor
 
 echo "####"
 echo "#### Deploying platform monitoring to [${NS}] ####"
