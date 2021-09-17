@@ -1,0 +1,3 @@
+fullnameOverride: memcached
+metrics:
+  enabled: true
