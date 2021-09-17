@@ -39,3 +39,16 @@ cd ${DIR_NAME}; ./generate-alert-rules-certmanager.bash ${CERTMANAGER_RULES}
 kubectl apply -f ${CERTMANAGER_RULES} -n ${NS}
 cd ${CURRENT_DIR}
 #===
+
+#=== Prometheus ===
+DIR_NAME=prometheus
+PROMETHEUS_RULES=generated-prometheus-rules.yaml
+cd ${DIR_NAME}; ./generate-alert-rules-prometheus.bash ${PROMETHEUS_RULES}
+kubectl apply -f ${PROMETHEUS_RULES} -n ${NS}
+cd ${CURRENT_DIR}
+
+ALERTMANAGER_RULES=generated-alertmanager-rules.yaml
+cd ${DIR_NAME}; ./generate-alert-rules-alertmanager.bash ${ALERTMANAGER_RULES}
+kubectl apply -f ${ALERTMANAGER_RULES} -n ${NS}
+cd ${CURRENT_DIR}
+#===
