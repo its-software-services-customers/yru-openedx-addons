@@ -11,6 +11,7 @@ cp alertmanager-config-tpl.yaml ${OUTPUT_FILE}
 
 URL_KEY=$(echo -n ${ALERT_NOTI_SLACK_URL})
 sed -i "s#__SLACK_URL__#${URL_KEY}#g" ${OUTPUT_FILE}
+sed -i "s#<<VAR_SLACK_CHANNEL>>#${VAR_SLACK_CHANNEL}#g" ${OUTPUT_FILE}
 
 CFG_FILE=$(cat ${OUTPUT_FILE} | base64 -w0)
 

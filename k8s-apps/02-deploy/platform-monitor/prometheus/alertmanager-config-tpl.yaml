@@ -29,7 +29,7 @@ receivers:
   - name: 'discard'
   - name: 'slack-notifications'
     slack_configs:
-    - channel: '#etda-logs-monitor'
+    - channel: '#<<VAR_SLACK_CHANNEL>>'
       send_resolved: true
       icon_url: https://avatars3.githubusercontent.com/u/3380462
       title: |-
