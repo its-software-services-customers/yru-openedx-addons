@@ -43,7 +43,9 @@ charts:
     chartUrl: https://grafana.github.io/helm-charts
     version: 6.16.2
 
-copy: []
+copy:
+  - from: gs://yru-openedx-vault/${ENV.ENVIRONMENT}/secrets-${ENV.ENVIRONMENT}.txt
+    toDir: "02-deploy/platform-monitor/prometheus"
 
 infraIasc:
   - valuesFiles: [01-setup/cert-manager/cert-manager.yaml]
