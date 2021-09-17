@@ -78,6 +78,12 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/memcached; ./deploy-memcached.bash; cd ${CWD}
     fi
 
+    if [[ $COMPONENT =~ ^(platform-monitor|all)$ ]];
+    then
+        cd 02-deploy/platform-monitor; ./deploy-platform-monitor.bash; cd ${CWD}
+    fi
+
+
     # Put this to very last
     if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
     then
