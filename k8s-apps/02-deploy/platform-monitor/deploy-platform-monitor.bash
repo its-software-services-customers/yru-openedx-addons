@@ -51,4 +51,9 @@ ALERTMANAGER_RULES=generated-alertmanager-rules.yaml
 cd ${DIR_NAME}; ./generate-alert-rules-alertmanager.bash ${ALERTMANAGER_RULES}
 kubectl apply -f ${ALERTMANAGER_RULES} -n ${NS}
 cd ${CURRENT_DIR}
+
+ALERTMANAGER_CONFIG=generated-alertmanager-config.yaml
+cd ${DIR_NAME}; ./generate-alertmanager-config.bash ${ALERTMANAGER_CONFIG}
+kubectl apply -f ${ALERTMANAGER_CONFIG} -n ${NS}
+cd ${CURRENT_DIR}
 #===
