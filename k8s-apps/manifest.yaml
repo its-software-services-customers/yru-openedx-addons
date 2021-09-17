@@ -48,7 +48,7 @@ copy:
     toDir: ""
 
   - from: secrets-${ENV.ENVIRONMENT}.txt
-    toDir: "secrets.txt"
+    toFile: "secrets.txt"
 
 infraIasc:
   - valuesFiles: [01-setup/cert-manager/cert-manager.yaml]
