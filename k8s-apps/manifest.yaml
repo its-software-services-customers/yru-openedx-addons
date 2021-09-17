@@ -39,6 +39,10 @@ charts:
     chartUrl: https://prometheus-community.github.io/helm-charts
     version: 17.2.1
 
+  grafana:
+    chartUrl: https://grafana.github.io/helm-charts
+    version: 6.16.2
+
 copy: []
 
 infraIasc:
@@ -95,3 +99,13 @@ infraIasc:
     toDir: 02-deploy/platform-monitor
     namespace: platform-monitor
     values: []
+
+  - valuesFiles: [02-deploy/platform-monitor/grafana-platform.yaml]
+    alias: rendered-grafana-platform
+    chartId: grafana
+    toDir: 02-deploy/platform-monitor
+    namespace: platform-monitor
+    values: []
+    #  - --set-string envRenderSecret.OKTA_CLIENT_ID=${SEC.OKTA_CLIENT_ID}
+    #  - --set-string envRenderSecret.OKTA_CLIENT_SECRET=${SEC.OKTA_CLIENT_SECRET}
+    #  - --set-string envRenderSecret.OKTA_TENANT_ID=${SEC.OKTA_TENANT_ID}

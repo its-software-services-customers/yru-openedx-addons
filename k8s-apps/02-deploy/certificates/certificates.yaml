@@ -34,3 +34,9 @@ certificates:
     secretName: prometheus-platform-cert
     issuerRef: lets-encrypt-issuer
     namespace: platform-monitor
+
+  - name: grafana-platform
+    secretName: grafana-platform-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: platform-monitor
+    
