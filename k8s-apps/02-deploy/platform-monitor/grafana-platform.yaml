@@ -2,10 +2,8 @@ fullnameOverride: grafana-platform
 image:
   repository: gcr.io/its-artifact-commons/grafana-loki-syslog
   tag: v7.5.10-6
-envRenderSecret:
-  OKTA_CLIENT_ID: "will-change"
-  OKTA_CLIENT_SECRET: "will-change"
-  OKTA_TENANT_ID: "will-change"
+envFromSecret: google-oidc-secret
+envRenderSecret: {}
 
 datasources:
   datasources.yaml:

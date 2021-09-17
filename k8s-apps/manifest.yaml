@@ -106,6 +106,3 @@ infraIasc:
     toDir: 02-deploy/platform-monitor
     namespace: platform-monitor
     values: []
-    #  - --set-string envRenderSecret.OKTA_CLIENT_ID=${SEC.OKTA_CLIENT_ID}
-    #  - --set-string envRenderSecret.OKTA_CLIENT_SECRET=${SEC.OKTA_CLIENT_SECRET}
-    #  - --set-string envRenderSecret.OKTA_TENANT_ID=${SEC.OKTA_TENANT_ID}
