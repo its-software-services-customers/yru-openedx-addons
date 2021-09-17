@@ -32,7 +32,7 @@ CURRENT_DIR=$(pwd)
 
 #=== Cert Manager ===
 DIR_NAME=cert-manager
-kubectl apply -f ${cert-manager}/certmanager-service-monitor.yaml -n ${NS}
+kubectl apply -f ${DIR_NAME}/certmanager-service-monitor.yaml -n ${NS}
 
 CERTMANAGER_RULES=generated-certmanager-rules.yaml
 cd ${DIR_NAME}; ./generate-alert-rules-certmanager.bash ${CERTMANAGER_RULES}
