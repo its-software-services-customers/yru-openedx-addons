@@ -1,0 +1,69 @@
+---
+defaultRules:
+  create: true
+  rules:
+    alertmanager: true
+
+alertmanager:
+  alertmanagerSpec:
+    alertmanagerConfigSelector:
+      matchLabels:
+        app: kube-prometheus-stack
+        release: kube-prometheus-stack
+
+prometheus:
+  prometheusSpec:
+    ruleSelector:
+      matchLabels:
+        app: kube-prometheus-stack
+        release: kube-prometheus-stack  
+
+    retention: 14d
+    retentionSize: 70GB
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 75Gi
+
+##### Excluded portions #####
+kubeProxy:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+kubeEtcd:
+  enabled: false
+
+kubeStateMetrics:
+  enabled: true #We need some metrics to make Grafana dashboard to show correctly
+
+kubeDns:
+  enabled: false
+
+coreDns:
+  enabled: false
+
+kubeControllerManager:
+  enabled: false
+
+kubelet:
+  enabled: true #We need some metrics to make Grafana dashboard to show correctly
+
+kubeApiServer:
+  enabled: false
+
+grafana:
+  enabled: false
+
+defaultRules:
+  create: false
+
+nodeExporter:
+  enabled: false
+
+prometheusOperator:
+  enabled: false

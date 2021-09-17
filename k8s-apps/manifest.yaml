@@ -35,6 +35,10 @@ charts:
     chartUrl: https://charts.bitnami.com/bitnami/
     version: 5.15.1
 
+  kube-prometheus-stack:
+    chartUrl: https://prometheus-community.github.io/helm-charts
+    version: 17.2.1
+
 copy: []
 
 infraIasc:
@@ -83,4 +87,11 @@ infraIasc:
     chartId: memcached
     toDir: 02-deploy/memcached
     namespace: memcached
+    values: []
+
+  - valuesFiles: [deploy/platform-monitor/prometheus-stack.yaml]
+    alias: rendered-prometheus-stack
+    chartId: kube-prometheus-stack
+    toDir: deploy/platform-monitor
+    namespace: platform-monitor
     values: []

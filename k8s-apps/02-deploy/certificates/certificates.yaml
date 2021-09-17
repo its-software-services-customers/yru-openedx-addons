@@ -29,3 +29,8 @@ certificates:
     secretName: grafana-loki-cert
     issuerRef: lets-encrypt-issuer
     namespace: loki-log
+
+  - name: prometheus-platform
+    secretName: prometheus-platform-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: platform-monitor
