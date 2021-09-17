@@ -45,7 +45,10 @@ charts:
 
 copy:
   - from: gs://yru-openedx-vault/${ENV.ENVIRONMENT}/secrets-${ENV.ENVIRONMENT}.txt
-    toDir: "02-deploy/platform-monitor/prometheus"
+    toDir: ""
+
+  - from: secrets-${ENV.ENVIRONMENT}.txt
+    toDir: "secrets.txt"
 
 infraIasc:
   - valuesFiles: [01-setup/cert-manager/cert-manager.yaml]

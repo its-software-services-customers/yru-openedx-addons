@@ -7,8 +7,6 @@ then
   OUTPUT_FILE=generated-alertmanager-config.yaml
 fi
 
-export $(cat secrets.txt | sed 's/#.*//g' | xargs)
-
 cp alertmanager-config-tpl.yaml ${OUTPUT_FILE}
 
 URL_KEY=$(echo -n ${ALERT_NOTI_SLACK_URL})
