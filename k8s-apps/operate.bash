@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #usage : operate.bash <development|production> <setup|deploy> [<component>]
+mv secrets-*.txt secrets.txt
 
 export KUBECONFIG=$(pwd)/kubeconfig
 export BASE_PATH=$(pwd)

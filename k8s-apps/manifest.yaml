@@ -47,9 +47,6 @@ copy:
   - from: gs://yru-openedx-vault/${ENV.ENVIRONMENT}/secrets-${ENV.ENVIRONMENT}.txt
     toDir: ""
 
-  - from: secrets-${ENV.ENVIRONMENT}.txt
-    toFile: "secrets.txt"
-
 infraIasc:
   - valuesFiles: [01-setup/cert-manager/cert-manager.yaml]
     alias: rendered-cert-manager
