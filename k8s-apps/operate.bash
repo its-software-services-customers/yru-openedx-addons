@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #usage : operate.bash <development|production> <setup|deploy> [<component>]
-mv secrets-*.txt secrets.txt
+cp secrets-*.txt secrets.txt
 
 export KUBECONFIG=$(pwd)/kubeconfig
 export BASE_PATH=$(pwd)
@@ -31,7 +31,6 @@ fi
 
 export ROOT_PATH=$(pwd); . ./98-utils/load-env.bash ${ENV}
 
-echo "Debug=[${TEST_ENV}]"
 kubectl get nodes
 
 CWD=$(pwd)
