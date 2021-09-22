@@ -13,6 +13,8 @@ kubectl create ns ${NS1}
 # Dot script to preserve ENV
 . ./export-secrets.bash ${BASE_PATH}/secrets.txt
 
+echo "[${MINIO_ACCESS_KEY}]"
+echo "[${MINIO_SECRET_KEY}]"
 ### Creaet MinIO used secrets ###
 
 cat << EOF > ${MINIO_SECRET}
