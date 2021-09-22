@@ -39,4 +39,8 @@ certificates:
     secretName: grafana-platform-cert
     issuerRef: lets-encrypt-issuer
     namespace: platform-monitor
-    
+
+  - name: mopr
+    secretName: minio-operator-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: minio-operator
