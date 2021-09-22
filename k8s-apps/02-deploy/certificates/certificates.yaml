@@ -44,3 +44,9 @@ certificates:
     secretName: minio-operator-cert
     issuerRef: lets-encrypt-issuer
     namespace: minio-operator
+
+  - name: minio-console
+    secretName: minio-console-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: minio-openedx
+    
