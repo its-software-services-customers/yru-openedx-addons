@@ -2,6 +2,7 @@
 
 #usage : operate.bash <development|production> <setup|deploy> [<component>]
 cp secrets-*.txt secrets.txt
+perl -pi -e 's/\r\n/\n/g' secrets.txt
 
 export KUBECONFIG=$(pwd)/kubeconfig
 export BASE_PATH=$(pwd)
