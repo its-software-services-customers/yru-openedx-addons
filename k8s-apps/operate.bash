@@ -88,6 +88,10 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/platform-monitor; ./deploy-platform-monitor.bash; cd ${CWD}
     fi
 
+    if [[ $COMPONENT =~ ^(minio-tenants|all)$ ]];
+    then
+        cd 02-deploy/minio-tenants; ./deploy-minio-tenants.bash; cd ${CWD}
+    fi
 
     # Put this to very last
     if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
