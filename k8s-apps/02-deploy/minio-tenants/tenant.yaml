@@ -22,29 +22,29 @@ spec:
     - name: MINIO_PROMETHEUS_AUTH_TYPE
       value: "public"
 
-    - name: MINIO_IDENTITY_OPENID_CONFIG_URL
-      value: https://dev-4641032.okta.com/oauth2/default/.well-known/openid-configuration
+#    - name: MINIO_IDENTITY_OPENID_CONFIG_URL
+#      value: https://dev-4641032.okta.com/oauth2/default/.well-known/openid-configuration
 
-    - name: MINIO_IDENTITY_OPENID_CLIENT_ID
-      valueFrom:
-        secretKeyRef:
-          name: minio-creds-secret
-          key: MINIO_IDENTITY_OPENID_CLIENT_ID
+#    - name: MINIO_IDENTITY_OPENID_CLIENT_ID
+#      valueFrom:
+#        secretKeyRef:
+#          name: minio-creds-secret
+#          key: MINIO_IDENTITY_OPENID_CLIENT_ID
 
-    - name: MINIO_IDENTITY_OPENID_CLIENT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: minio-creds-secret
-          key: MINIO_IDENTITY_OPENID_CLIENT_SECRET
+#    - name: MINIO_IDENTITY_OPENID_CLIENT_SECRET
+#      valueFrom:
+#        secretKeyRef:
+#          name: minio-creds-secret
+#          key: MINIO_IDENTITY_OPENID_CLIENT_SECRET
 
-    - name: MINIO_IDENTITY_OPENID_REDIRECT_URI
-      value: https://minio-console.<<VAR_CERT_CLUSTER_DOMAIN>>/oauth_callback
+#    - name: MINIO_IDENTITY_OPENID_REDIRECT_URI
+#      value: https://minio-console.<<VAR_CERT_CLUSTER_DOMAIN>>/oauth_callback
 
-    - name: MINIO_IDENTITY_OPENID_SCOPES
-      value: openid,profile,email
+#    - name: MINIO_IDENTITY_OPENID_SCOPES
+#      value: openid,profile,email
 
-    - name: MINIO_IDENTITY_OPENID_CLAIM_NAME
-      value: policy
+#    - name: MINIO_IDENTITY_OPENID_CLAIM_NAME
+#      value: policy
 
     - name: MINIO_HTTP_TRACE
       value: "/dev/stdout"
