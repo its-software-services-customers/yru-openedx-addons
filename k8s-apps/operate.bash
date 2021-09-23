@@ -1,6 +1,11 @@
 #!/bin/bash
 
 #usage : operate.bash <development|production> <setup|deploy> [<component>]
+cp secrets-*.txt secrets.txt
+perl -pi -e 's/\r\n/\n/g' secrets.txt
+
+export KUBECONFIG=$(pwd)/kubeconfig
+export BASE_PATH=$(pwd)
 
 if [ -z "$1" ]; then
     echo "Argument <env> is required!!!"
@@ -25,10 +30,8 @@ if [ -z "$COMPONENT" ]; then
     COMPONENT='all'
 fi
 
-export KUBECONFIG=$(pwd)/kubeconfig
 export ROOT_PATH=$(pwd); . ./98-utils/load-env.bash ${ENV}
 
-echo "Debug=[${TEST_ENV}]"
 kubectl get nodes
 
 CWD=$(pwd)
@@ -47,6 +50,11 @@ if [ "$ACTION" = 'setup' ]; then
     if [[ $COMPONENT =~ ^(cert-manager|all)$ ]]; 
     then
         cd 01-setup/cert-manager; ./setup-cert-manager.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(minio|all)$ ]]; 
+    then
+        cd 01-setup/minio; ./setup-minio.bash; cd ${CWD}
     fi    
 fi
 
@@ -69,6 +77,26 @@ if [ "$ACTION" = 'deploy' ]; then
     if [[ $COMPONENT =~ ^(loki-log|all)$ ]]; 
     then
         cd 02-deploy/loki-log; ./deploy-loki-log.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(memcached|all)$ ]];
+    then
+        cd 02-deploy/memcached; ./deploy-memcached.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(platform-monitor|all)$ ]];
+    then
+        cd 02-deploy/platform-monitor; ./deploy-platform-monitor.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(minio-tenants|all)$ ]];
+    then
+        cd 02-deploy/minio-tenants; ./deploy-minio-tenants.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(minio-bucket|all)$ ]];
+    then
+        cd 02-deploy/minio-tenants; ./create-buckets.bash; cd ${CWD}
     fi
 
     # Put this to very last

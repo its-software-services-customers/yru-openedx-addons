@@ -6,7 +6,7 @@ alertmanager:
     config:
       alertNoti:
         slackUrl: ''
-        channel: '#yru-openedx-nonprod'
+        channel: ''
         discardRules:
           - alertname: 'CPUThrottlingHigh'
             namespace: 'monitoring'

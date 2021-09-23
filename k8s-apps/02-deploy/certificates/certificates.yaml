@@ -29,3 +29,28 @@ certificates:
     secretName: grafana-loki-cert
     issuerRef: lets-encrypt-issuer
     namespace: loki-log
+
+  - name: prometheus-platform
+    secretName: prometheus-platform-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: platform-monitor
+
+  - name: grafana-platform
+    secretName: grafana-platform-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: platform-monitor
+
+  - name: mopr
+    secretName: minio-operator-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: minio-operator
+
+  - name: minio-openedx
+    secretName: minio-openedx-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: minio-openedx
+    
+  - name: minio-console
+    secretName: minio-console-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: minio-openedx    
