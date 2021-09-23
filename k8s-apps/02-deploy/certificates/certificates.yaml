@@ -50,3 +50,7 @@ certificates:
     issuerRef: lets-encrypt-issuer
     namespace: minio-openedx
     
+  - name: minio-console
+    secretName: minio-console-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: minio-openedx    
