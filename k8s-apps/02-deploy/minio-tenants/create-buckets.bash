@@ -6,12 +6,16 @@ ALIAS1_URL=https://minio-openedx.${VAR_CERT_CLUSTER_DOMAIN}
 # Dot script to preserve ENV
 . ./export-secrets.bash ${BASE_PATH}/secrets.txt
 
-# Install MinIO client
-echo ""
-echo "### Downloading MinIO client"
-sudo curl -LO https://dl.min.io/client/mc/release/linux-amd64/mc
-sudo chmod +x mc
-#sudo chown ${USER}:wheel mc
+if [ -f "./mc" ]; then
+    echo "Not download mc because it is already exist"
+else 
+    # Install MinIO client
+    echo ""
+    echo "### Downloading MinIO client"
+    sudo curl -LO https://dl.min.io/client/mc/release/linux-amd64/mc
+    sudo chmod +x mc
+    #sudo chown ${USER}:wheel mc
+fi
 
 # Setting MinIO client alias
 echo ""
