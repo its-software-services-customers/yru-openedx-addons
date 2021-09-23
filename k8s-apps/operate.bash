@@ -79,11 +79,6 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/loki-log; ./deploy-loki-log.bash; cd ${CWD}
     fi
 
-    if [[ $COMPONENT =~ ^(memcached|all)$ ]];
-    then
-        cd 02-deploy/memcached; ./deploy-memcached.bash; cd ${CWD}
-    fi
-
     if [[ $COMPONENT =~ ^(platform-monitor|all)$ ]];
     then
         cd 02-deploy/platform-monitor; ./deploy-platform-monitor.bash; cd ${CWD}
