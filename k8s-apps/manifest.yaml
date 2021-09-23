@@ -31,9 +31,9 @@ charts:
     chartUrl: https://its-software-services-devops.github.io/helm-loki/
     version: 1.1.2
 
-  memcached:
-    chartUrl: https://charts.bitnami.com/bitnami/
-    version: 5.15.1
+#  memcached:
+#    chartUrl: https://charts.bitnami.com/bitnami/
+#    version: 5.15.1
 
   kube-prometheus-stack:
     chartUrl: https://prometheus-community.github.io/helm-charts
@@ -89,12 +89,12 @@ infraIasc:
     template: loki-log
     values: []
 
-  - valuesFiles: [02-deploy/memcached/memcached.yaml]
-    alias: rendered-memcached
-    chartId: memcached
-    toDir: 02-deploy/memcached
-    namespace: memcached
-    values: []
+#  - valuesFiles: [02-deploy/memcached/memcached.yaml]
+#    alias: rendered-memcached
+#    chartId: memcached
+#    toDir: 02-deploy/memcached
+#    namespace: memcached
+#    values: []
 
   - valuesFiles: [02-deploy/platform-monitor/prometheus-stack.yaml]
     alias: rendered-prometheus-stack
