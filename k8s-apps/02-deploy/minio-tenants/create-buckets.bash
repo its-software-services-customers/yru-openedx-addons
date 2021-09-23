@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ALIAS1=yru-openedx
-ALIAS1_URL=https://minio-syslog.${VAR_CERT_CLUSTER_DOMAIN}
+ALIAS1_URL=https://minio-openedx.${VAR_CERT_CLUSTER_DOMAIN}
 
 # Dot script to preserve ENV
 . ./export-secrets.bash ${BASE_PATH}/secrets.txt
