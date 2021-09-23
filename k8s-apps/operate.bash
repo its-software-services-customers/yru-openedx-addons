@@ -94,6 +94,11 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/minio-tenants; ./deploy-minio-tenants.bash; cd ${CWD}
     fi
 
+    if [[ $COMPONENT =~ ^(minio-bucket|all)$ ]];
+    then
+        cd 02-deploy/minio-tenants; ./create-buckets.bash; cd ${CWD}
+    fi
+
     # Put this to very last
     if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
     then
