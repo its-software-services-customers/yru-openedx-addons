@@ -34,7 +34,7 @@ spec:
   tls:
     - hosts:
       - studio.openedx.<<VAR_CERT_CLUSTER_DOMAIN>>
-      secretName: openedx-cert
+      secretName: studio-openedx-cert
   rules:
     - host: studio.openedx.<<VAR_CERT_CLUSTER_DOMAIN>>
       http:
