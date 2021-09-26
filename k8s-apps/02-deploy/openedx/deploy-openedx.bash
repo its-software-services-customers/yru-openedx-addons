@@ -28,11 +28,11 @@ echo "This to root path configuration: $(tutor config printroot)"
 
 tutor config save \
     --set ENABLE_HTTPS=false \
-    --set CMS_HOST=studio.openedx.yru-oedx-t.its-software-services.com \
-    --set LMS_HOST=openedx.yru-oedx-t.its-software-services.com \
+    --set CMS_HOST=studio.openedx.${VAR_CERT_CLUSTER_DOMAIN} \
+    --set LMS_HOST=openedx.${VAR_CERT_CLUSTER_DOMAIN} \
     --set CONTACT_EMAIL=dounpct@gmail.com \
     --set LANGUAGE_CODE=en \
-    --set PLATFORM_NAME=first-edx
+    --set PLATFORM_NAME=yru-mooc-oedx
 
 # tutor k8s quickstart
 tutor k8s start
