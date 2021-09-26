@@ -53,4 +53,14 @@ certificates:
   - name: minio-console
     secretName: minio-console-cert
     issuerRef: lets-encrypt-issuer
-    namespace: minio-openedx    
+    namespace: minio-openedx
+
+  - name: openedx
+    secretName: openedx-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: openedx
+
+  - name: studio.openedx
+    secretName: studio-openedx-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: openedx
