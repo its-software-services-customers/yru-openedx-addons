@@ -94,6 +94,11 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/minio-tenants; ./create-buckets.bash; cd ${CWD}
     fi
 
+    if [[ $COMPONENT =~ ^(openedx|all)$ ]];
+    then
+        cd 02-deploy/openedx; ./deploy-openedx.bash; cd ${CWD}
+    fi
+
     # Put this to very last
     if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
     then
