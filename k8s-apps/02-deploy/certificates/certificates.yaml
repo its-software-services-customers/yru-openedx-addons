@@ -59,3 +59,8 @@ certificates:
     secretName: openedx-cert
     issuerRef: lets-encrypt-issuer
     namespace: openedx
+
+  - name: studio.openedx
+    secretName: studio-openedx-cert
+    issuerRef: lets-encrypt-issuer
+    namespace: openedx
