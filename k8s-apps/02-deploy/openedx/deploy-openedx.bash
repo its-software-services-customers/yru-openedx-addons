@@ -31,7 +31,7 @@ tutor config save \
     --set CMS_HOST=studio.openedx.${VAR_CERT_CLUSTER_DOMAIN} \
     --set LMS_HOST=openedx.${VAR_CERT_CLUSTER_DOMAIN} \
     --set CONTACT_EMAIL=dounpct@gmail.com \
-    --set LANGUAGE_CODE=en \
+    --set LANGUAGE_CODE=th \
     --set PLATFORM_NAME=yru-mooc-oedx
 
 # tutor k8s quickstart
@@ -41,7 +41,7 @@ tutor k8s init
 # echo "root path configuration"
 # 
 # ls "$(tutor config printroot)"
-# cat "$(tutor config printroot)/config.yaml"
+# cat "$(tutor config printroot)/config.yml"
 # echo "you can access from"
 # echo "LMS : k8s.overhang.io"
 # echo "LMS : studio.k8s.overhang.io"
