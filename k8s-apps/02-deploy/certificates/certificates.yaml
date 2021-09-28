@@ -3,7 +3,7 @@ global:
   certNamespace: ingress-nginx
   issuerNamespace: cert-manager
   #envSuffix: ''
-  letsEncryptEnv: <<VAR_CERT_LETENCRYPT_ENV>> #prod or test
+  letsEncryptEnv: prod #or test
   dns01:
     cloudDNS:
       project: <<VAR_CERT_SA_PROJECT>> #service account project for Cloud CDN
