@@ -34,9 +34,9 @@ tutor config save \
     --set LANGUAGE_CODE=th \
     --set PLATFORM_NAME=yru-mooc-oedx
 
-# tutor k8s quickstart
-tutor k8s start
-tutor k8s init
+tutor k8s quickstart
+# tutor k8s start
+# tutor k8s init
 
 # echo "root path configuration"
 # 
