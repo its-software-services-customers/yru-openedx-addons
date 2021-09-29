@@ -5,12 +5,13 @@ global:
   issuerNamespace: cert-manager
   #envSuffix: ''
   letsEncryptEnv: prod #or test
-  dns01:
-    cloudDNS:
-      project: <<VAR_CERT_SA_PROJECT>> #service account project for Cloud CDN
-      serviceAccountSecretRef:
-        name: gcp-cloud-dns-account-key
-        key: service-account.json
+  solvers:
+    - dns01:
+        cloudDNS:
+          project: <<VAR_CERT_SA_PROJECT>> #service account project for Cloud CDN
+          serviceAccountSecretRef:
+            name: gcp-cloud-dns-account-key
+            key: service-account.json
 issuers:
   - name: lets-encrypt-issuer
     email: <<VAR_CERT_LETENCRYPT_EMAIL>> #pjame.fb@gmail.com
