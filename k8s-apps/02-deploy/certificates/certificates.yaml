@@ -55,10 +55,11 @@ certificates:
     issuerRef: lets-encrypt-issuer
     namespace: minio-openedx
 
-#  - name: EMPTY
-#    secretName: openedx-cert
-#    issuerRef: lets-encrypt-issuer
-#    namespace: openedx
+  - name: root
+    secretName: openedx-cert
+    issuerRef: lets-encrypt-issuer
+    isEmpty: true
+    namespace: openedx
 
   - name: studio
     secretName: studio-openedx-cert
