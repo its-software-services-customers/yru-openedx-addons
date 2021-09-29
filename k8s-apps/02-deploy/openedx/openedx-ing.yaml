@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - openedx.<<VAR_CERT_CLUSTER_DOMAIN>>
+      - <<VAR_CERT_CLUSTER_DOMAIN>>
       secretName: openedx-cert
   rules:
-    - host: openedx.<<VAR_CERT_CLUSTER_DOMAIN>>
+    - host: <<VAR_CERT_CLUSTER_DOMAIN>>
       http:
         paths:
           - path: /
@@ -33,10 +33,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - studio.openedx.<<VAR_CERT_CLUSTER_DOMAIN>>
+      - studio.<<VAR_CERT_CLUSTER_DOMAIN>>
       secretName: studio-openedx-cert
   rules:
-    - host: studio.openedx.<<VAR_CERT_CLUSTER_DOMAIN>>
+    - host: studio.<<VAR_CERT_CLUSTER_DOMAIN>>
       http:
         paths:
           - path: /
