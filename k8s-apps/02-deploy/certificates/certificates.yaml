@@ -1,5 +1,6 @@
 global:
-  domain: <<VAR_CERT_CLUSTER_DOMAIN>> #yru-oedx.its-software-services.com
+  domains:
+    yru: <<VAR_CERT_CLUSTER_DOMAIN>>
   certNamespace: ingress-nginx
   issuerNamespace: cert-manager
   #envSuffix: ''
@@ -19,49 +20,59 @@ certificates:
     secretName: prometheus-k8s-cert
     issuerRef: lets-encrypt-issuer
     namespace: monitoring
+    domain: yru
 
   - name: grafana-k8s
     secretName: grafana-k8s-cert
     issuerRef: lets-encrypt-issuer
     namespace: monitoring
+    domain: yru
 
   - name: grafana-loki
     secretName: grafana-loki-cert
     issuerRef: lets-encrypt-issuer
     namespace: loki-log
+    domain: yru
 
   - name: prometheus-platform
     secretName: prometheus-platform-cert
     issuerRef: lets-encrypt-issuer
     namespace: platform-monitor
+    domain: yru
 
   - name: grafana-platform
     secretName: grafana-platform-cert
     issuerRef: lets-encrypt-issuer
     namespace: platform-monitor
+    domain: yru
 
   - name: mopr
     secretName: minio-operator-cert
     issuerRef: lets-encrypt-issuer
     namespace: minio-operator
+    domain: yru
 
   - name: minio-openedx
     secretName: minio-openedx-cert
     issuerRef: lets-encrypt-issuer
     namespace: minio-openedx
+    domain: yru
     
   - name: minio-console
     secretName: minio-console-cert
     issuerRef: lets-encrypt-issuer
     namespace: minio-openedx
+    domain: yru
 
   - name: root
     secretName: openedx-cert
     issuerRef: lets-encrypt-issuer
     isEmpty: true
     namespace: openedx
+    domain: yru
 
   - name: studio
     secretName: studio-openedx-cert
     issuerRef: lets-encrypt-issuer
     namespace: openedx
+    domain: yru
