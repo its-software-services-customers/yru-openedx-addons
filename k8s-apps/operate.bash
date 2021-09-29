@@ -79,11 +79,6 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/loki-log; ./deploy-loki-log.bash; cd ${CWD}
     fi
 
-    if [[ $COMPONENT =~ ^(memcached|all)$ ]];
-    then
-        cd 02-deploy/memcached; ./deploy-memcached.bash; cd ${CWD}
-    fi
-
     if [[ $COMPONENT =~ ^(platform-monitor|all)$ ]];
     then
         cd 02-deploy/platform-monitor; ./deploy-platform-monitor.bash; cd ${CWD}
@@ -97,6 +92,11 @@ if [ "$ACTION" = 'deploy' ]; then
     if [[ $COMPONENT =~ ^(minio-bucket|all)$ ]];
     then
         cd 02-deploy/minio-tenants; ./create-buckets.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(openedx|all)$ ]];
+    then
+        cd 02-deploy/openedx; ./deploy-openedx.bash; cd ${CWD}
     fi
 
     # Put this to very last
