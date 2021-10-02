@@ -25,4 +25,20 @@ tutor config save \
     --set LANGUAGE_CODE=th \
     --set PLATFORM_NAME=yru-mooc-oedx
 
+
+mkdir "$(tutor plugins printroot)"
+
+cat <<MESSAGES > $(tutor plugins printroot)/disable_public_account_creation.yml
+name: disablepublicaccountcreation
+version: 0.1.0
+patches:
+  common-env-features: |
+    "ALLOW_PUBLIC_ACCOUNT_CREATION" : false
+MESSAGES
+
+tutor plugins enable disablepublicaccountcreation
+tutor config save
+
+tutor k8s stop
+
 tutor k8s quickstart
