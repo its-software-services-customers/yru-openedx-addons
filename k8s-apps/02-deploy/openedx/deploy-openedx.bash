@@ -17,47 +17,28 @@ sudo chmod 0755 /usr/local/bin/tutor
 echo "This to root path configuration: $(tutor config printroot)"
 # --------------------------
 
-# --------------------------
-# start clear root path configuration"
-# sudo rm -rf $(tutor config printroot)
-# --------------------------
-
-# --------------------------
-# install tutor
-# tutor k8s quickstart
-
 tutor config save \
     --set ENABLE_HTTPS=false \
     --set CMS_HOST=studio.${VAR_CERT_CLUSTER_DOMAIN} \
     --set LMS_HOST=${VAR_CERT_CLUSTER_DOMAIN} \
     --set CONTACT_EMAIL=dounpct@gmail.com \
-    --set LANGUAGE_CODE=en \
+    --set LANGUAGE_CODE=th \
     --set PLATFORM_NAME=yru-mooc-oedx
 
-# tutor k8s quickstart
-tutor k8s start
-tutor k8s init
 
-# echo "root path configuration"
-# 
-# ls "$(tutor config printroot)"
-# cat "$(tutor config printroot)/config.yaml"
-# echo "you can access from"
-# echo "LMS : k8s.overhang.io"
-# echo "LMS : studio.k8s.overhang.io"
-# --------------------------
+mkdir "$(tutor plugins printroot)"
 
-# --------------------------
-# this is for export external load balance for minikube 
-# left for production
-# sudo minikube tunnel 
-# --------------------------
+cat <<MESSAGES > $(tutor plugins printroot)/disable_public_account_creation.yml
+name: disablepublicaccountcreation
+version: 0.1.0
+patches:
+  common-env-features: |
+    "ALLOW_PUBLIC_ACCOUNT_CREATION" : false
+MESSAGES
 
-# install minio plugin
-# tutor plugins enable minio
-# tutor config save
+tutor plugins enable disablepublicaccountcreation
+tutor config save
 
-# tutor k8s quickstart
+tutor k8s stop
 
-# tutor k8s start
-# tutor k8s init
+tutor k8s quickstart
