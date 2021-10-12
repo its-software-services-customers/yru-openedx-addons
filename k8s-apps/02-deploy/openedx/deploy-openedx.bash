@@ -55,8 +55,31 @@ patches:
 MESSAGES
 tutor plugins enable change-cors
 
+
+cat <<MESSAGES > $(tutor config printroot)/env/k8s/deployments-extend.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms
+spec:
+  template:
+    spec:
+      containers:
+        - resources:
+            requests:
+              memory: 2.5Gi
+MESSAGES
+
+cat <<MESSAGES > $(tutor plugins printroot)/custom-resources.yml
+name: custom-resources
+version: 0.1.0
+patches:
+  kustomization-resources: |
+    - k8s/deployments-extend.yml
+MESSAGES
+tutor plugins enable custom-resources
+
 tutor config save
 
 tutor k8s stop
-
 tutor k8s quickstart
