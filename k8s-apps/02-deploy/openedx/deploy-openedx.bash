@@ -46,6 +46,15 @@ patches:
 MESSAGES
 tutor plugins enable change-pass-member
 
+cat <<MESSAGES > $(tutor plugins printroot)/cors.yml
+name: change-cors
+version: 0.1.0
+patches:
+  lms-env: |
+    "CORS_ORIGIN_ALLOW_ALL" : true
+MESSAGES
+tutor plugins enable change-cors
+
 tutor config save
 
 tutor k8s stop
