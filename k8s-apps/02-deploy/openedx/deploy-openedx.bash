@@ -28,15 +28,24 @@ tutor config save \
 
 mkdir "$(tutor plugins printroot)"
 
-cat <<MESSAGES > $(tutor plugins printroot)/disable_public_account_creation.yml
-name: disablepublicaccountcreation
+# cat <<MESSAGES > $(tutor plugins printroot)/disable_public_account_creation.yml
+# name: disablepublicaccountcreation
+# version: 0.1.0
+# patches:
+#   common-env-features: |
+#     "ALLOW_PUBLIC_ACCOUNT_CREATION" : false
+# MESSAGES
+# tutor plugins enable disablepublicaccountcreation
+
+cat <<MESSAGES > $(tutor plugins printroot)/change-pass-member.yml
+name: change-pass-member
 version: 0.1.0
 patches:
   common-env-features: |
-    "ALLOW_PUBLIC_ACCOUNT_CREATION" : false
+    "ENABLE_CHANGE_USER_PASSWORD_ADMIN" : true
 MESSAGES
+tutor plugins enable change-pass-member
 
-tutor plugins enable disablepublicaccountcreation
 tutor config save
 
 tutor k8s stop
