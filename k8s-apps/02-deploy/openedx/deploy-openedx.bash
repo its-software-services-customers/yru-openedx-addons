@@ -77,7 +77,7 @@ patches:
   kustomization-resources: |
     - k8s/deployments-extend.yml
 MESSAGES
-tutor plugins enable custom-resources
+tutor plugins disable custom-resources
 
 tutor config save
 
