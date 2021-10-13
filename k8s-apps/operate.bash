@@ -51,11 +51,6 @@ if [ "$ACTION" = 'setup' ]; then
     then
         cd 01-setup/cert-manager; ./setup-cert-manager.bash; cd ${CWD}
     fi
-
-    if [[ $COMPONENT =~ ^(minio|all)$ ]]; 
-    then
-        cd 01-setup/minio; ./setup-minio.bash; cd ${CWD}
-    fi    
 fi
 
 if [ "$ACTION" = 'deploy' ]; then

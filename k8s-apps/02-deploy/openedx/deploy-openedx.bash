@@ -14,7 +14,11 @@ kubectl apply -f ${OUTPUT_FILE} -n ${NS}
 # download tutor
 sudo curl -L "https://github.com/overhangio/tutor/releases/download/v12.1.2/tutor-$(uname -s)_$(uname -m)" -o /usr/local/bin/tutor
 sudo chmod 0755 /usr/local/bin/tutor
-echo "This to root path configuration: $(tutor config printroot)"
+
+PLUGIN_ROOT="$(tutor plugins printroot)"
+CONFIG_ROOT="$(tutor config printroot)"
+
+echo "This to root path configuration: ${CONFIG_ROOT}"
 # --------------------------
 
 tutor config save \
@@ -26,18 +30,9 @@ tutor config save \
     --set PLATFORM_NAME=yru-mooc-oedx
 
 
-mkdir "$(tutor plugins printroot)"
+mkdir -p "${PLUGIN_ROOT}"
 
-# cat <<MESSAGES > $(tutor plugins printroot)/disable_public_account_creation.yml
-# name: disablepublicaccountcreation
-# version: 0.1.0
-# patches:
-#   common-env-features: |
-#     "ALLOW_PUBLIC_ACCOUNT_CREATION" : false
-# MESSAGES
-# tutor plugins enable disablepublicaccountcreation
-
-cat <<MESSAGES > $(tutor plugins printroot)/change-pass-member.yml
+cat <<MESSAGES > ${PLUGIN_ROOT}/change-pass-member.yml
 name: change-pass-member
 version: 0.1.0
 patches:
@@ -46,7 +41,7 @@ patches:
 MESSAGES
 tutor plugins enable change-pass-member
 
-cat <<MESSAGES > $(tutor plugins printroot)/cors.yml
+cat <<MESSAGES > ${PLUGIN_ROOT}/cors.yml
 name: change-cors
 version: 0.1.0
 patches:
@@ -56,7 +51,34 @@ MESSAGES
 tutor plugins enable change-cors
 
 
-cat <<MESSAGES > $(tutor config printroot)/env/k8s/deployments-extend.yml
+cat <<MESSAGES > ${CONFIG_ROOT}/env/k8s/deployments-extend.yml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql
+spec:
+  resources:
+    requests:
+      storage: ${VAR_MYSQL_DISK_GB}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb
+spec:
+  resources:
+    requests:
+      storage: ${VAR_MONGODB_DISK_GB}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elasticsearch
+spec:
+  resources:
+    requests:
+      storage: ${VAR_ES_DISK_GB}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -65,21 +87,25 @@ spec:
   template:
     spec:
       containers:
-        - resources:
+        - name: cms
+          resources:
             requests:
-              memory: 2.5Gi
+              memory: 2Gi
 MESSAGES
 
-cat <<MESSAGES > $(tutor plugins printroot)/custom-resources.yml
+cat <<MESSAGES > ${PLUGIN_ROOT}/custom-resources.yml
 name: custom-resources
 version: 0.1.0
 patches:
   kustomization-resources: |
-    - k8s/deployments-extend.yml
+    patches:
+      - k8s/deployments-extend.yml
 MESSAGES
-tutor plugins disable custom-resources
+
+tutor plugins enable custom-resources
 
 tutor config save
+tutor config save --set DOCKER_IMAGE_OPENEDX=gcr.io/its-artifact-commons/yru-openedx-docker:${VAR_DOCKER_VERSION}
 
 tutor k8s stop
 tutor k8s quickstart
