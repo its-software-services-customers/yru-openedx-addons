@@ -31,18 +31,6 @@ charts:
     chartUrl: https://its-software-services-devops.github.io/helm-loki/
     version: 1.1.2
 
-#  memcached:
-#    chartUrl: https://charts.bitnami.com/bitnami/
-#    version: 5.15.1
-
-  kube-prometheus-stack:
-    chartUrl: https://prometheus-community.github.io/helm-charts
-    version: 17.2.1
-
-  grafana:
-    chartUrl: https://grafana.github.io/helm-charts
-    version: 6.16.2
-
 copy:
   - from: gs://yru-openedx-vault/${ENV.ENVIRONMENT}/secrets-${ENV.ENVIRONMENT}.txt
     toDir: ""
@@ -87,25 +75,4 @@ infraIasc:
     toDir: 02-deploy/loki-log
     namespace: loki-log
     template: loki-log
-    values: []
-
-#  - valuesFiles: [02-deploy/memcached/memcached.yaml]
-#    alias: rendered-memcached
-#    chartId: memcached
-#    toDir: 02-deploy/memcached
-#    namespace: memcached
-#    values: []
-
-  - valuesFiles: [02-deploy/platform-monitor/prometheus-stack.yaml]
-    alias: rendered-prometheus-stack
-    chartId: kube-prometheus-stack
-    toDir: 02-deploy/platform-monitor
-    namespace: platform-monitor
-    values: []
-
-  - valuesFiles: [02-deploy/platform-monitor/grafana-platform.yaml]
-    alias: rendered-grafana-platform
-    chartId: grafana
-    toDir: 02-deploy/platform-monitor
-    namespace: platform-monitor
     values: []
