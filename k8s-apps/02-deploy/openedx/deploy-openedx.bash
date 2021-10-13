@@ -107,7 +107,7 @@ tutor plugins enable custom-resources
 tutor config save
 tutor config save --set DOCKER_IMAGE_OPENEDX=gcr.io/its-artifact-commons/yru-openedx-docker:${VAR_DOCKER_VERSION}
 
-tutor k8s stop
+# tutor k8s stop
 tutor k8s quickstart
 
 # tutor k8s createuser --staff --superuser admin dounpct@gmail.com
