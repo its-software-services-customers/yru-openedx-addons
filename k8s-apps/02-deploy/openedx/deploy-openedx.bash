@@ -14,50 +14,100 @@ kubectl apply -f ${OUTPUT_FILE} -n ${NS}
 # download tutor
 sudo curl -L "https://github.com/overhangio/tutor/releases/download/v12.1.2/tutor-$(uname -s)_$(uname -m)" -o /usr/local/bin/tutor
 sudo chmod 0755 /usr/local/bin/tutor
-echo "This to root path configuration: $(tutor config printroot)"
-# --------------------------
 
-# --------------------------
-# start clear root path configuration"
-# sudo rm -rf $(tutor config printroot)
-# --------------------------
+PLUGIN_ROOT="$(tutor plugins printroot)"
+CONFIG_ROOT="$(tutor config printroot)"
 
+echo "This to root path configuration: ${CONFIG_ROOT}"
 # --------------------------
-# install tutor
-# tutor k8s quickstart
 
 tutor config save \
     --set ENABLE_HTTPS=false \
     --set CMS_HOST=studio.${VAR_CERT_CLUSTER_DOMAIN} \
     --set LMS_HOST=${VAR_CERT_CLUSTER_DOMAIN} \
     --set CONTACT_EMAIL=dounpct@gmail.com \
-    --set LANGUAGE_CODE=en \
+    --set LANGUAGE_CODE=th \
     --set PLATFORM_NAME=yru-mooc-oedx
 
-# tutor k8s quickstart
-tutor k8s start
-tutor k8s init
 
-# echo "root path configuration"
-# 
-# ls "$(tutor config printroot)"
-# cat "$(tutor config printroot)/config.yaml"
-# echo "you can access from"
-# echo "LMS : k8s.overhang.io"
-# echo "LMS : studio.k8s.overhang.io"
-# --------------------------
+mkdir -p "${PLUGIN_ROOT}"
 
-# --------------------------
-# this is for export external load balance for minikube 
-# left for production
-# sudo minikube tunnel 
-# --------------------------
+cat <<MESSAGES > ${PLUGIN_ROOT}/change-pass-member.yml
+name: change-pass-member
+version: 0.1.0
+patches:
+  common-env-features: |
+    "ENABLE_CHANGE_USER_PASSWORD_ADMIN" : true
+MESSAGES
+tutor plugins enable change-pass-member
 
-# install minio plugin
-# tutor plugins enable minio
-# tutor config save
+cat <<MESSAGES > ${PLUGIN_ROOT}/cors.yml
+name: change-cors
+version: 0.1.0
+patches:
+  lms-env: |
+    "CORS_ORIGIN_ALLOW_ALL" : true
+MESSAGES
+tutor plugins enable change-cors
 
-# tutor k8s quickstart
 
-# tutor k8s start
-# tutor k8s init
+cat <<MESSAGES > ${CONFIG_ROOT}/env/k8s/deployments-extend.yml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql
+spec:
+  resources:
+    requests:
+      storage: ${VAR_MYSQL_DISK_GB}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb
+spec:
+  resources:
+    requests:
+      storage: ${VAR_MONGODB_DISK_GB}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elasticsearch
+spec:
+  resources:
+    requests:
+      storage: ${VAR_ES_DISK_GB}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms
+spec:
+  template:
+    spec:
+      containers:
+        - name: cms
+          resources:
+            requests:
+              memory: 2Gi
+MESSAGES
+
+cat <<MESSAGES > ${PLUGIN_ROOT}/custom-resources.yml
+name: custom-resources
+version: 0.1.0
+patches:
+  kustomization-resources: |
+    patches:
+      - k8s/deployments-extend.yml
+MESSAGES
+
+tutor plugins enable custom-resources
+
+tutor config save
+tutor config save --set DOCKER_IMAGE_OPENEDX=gcr.io/its-artifact-commons/yru-openedx-docker:${VAR_DOCKER_VERSION}
+
+tutor k8s stop
+tutor k8s quickstart
+
+# tutor k8s createuser --staff --superuser admin dounpct@gmail.com
