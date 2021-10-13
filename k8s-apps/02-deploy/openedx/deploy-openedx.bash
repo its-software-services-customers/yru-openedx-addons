@@ -109,3 +109,5 @@ tutor config save --set DOCKER_IMAGE_OPENEDX=gcr.io/its-artifact-commons/yru-ope
 
 tutor k8s stop
 tutor k8s quickstart
+
+# tutor k8s createuser --staff --superuser admin dounpct@gmail.com
