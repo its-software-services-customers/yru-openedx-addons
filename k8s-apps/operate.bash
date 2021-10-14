@@ -51,6 +51,11 @@ if [ "$ACTION" = 'setup' ]; then
     then
         cd 01-setup/cert-manager; ./setup-cert-manager.bash; cd ${CWD}
     fi
+
+    if [[ $COMPONENT =~ ^(minio|all)$ ]]; 
+    then
+        cd 01-setup/minio; ./setup-minio.bash; cd ${CWD}
+    fi    
 fi
 
 if [ "$ACTION" = 'deploy' ]; then
@@ -79,6 +84,16 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/openedx; ./deploy-openedx.bash; cd ${CWD}
     fi
 
+    if [[ $COMPONENT =~ ^(minio-tenants|all)$ ]];
+    then
+        cd 02-deploy/minio-tenants; ./deploy-minio-tenants.bash; cd ${CWD}
+    fi
+
+    if [[ $COMPONENT =~ ^(minio-bucket|all)$ ]];
+    then
+        cd 02-deploy/minio-tenants; ./create-buckets.bash; cd ${CWD}
+    fi
+    
     # Put this to very last
     if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
     then
