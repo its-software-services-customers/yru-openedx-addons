@@ -60,7 +60,7 @@ spec:
       - minio.<<VAR_CERT_CLUSTER_DOMAIN>>
       secretName: minio-cert
   rules:
-    - host: studio.<<VAR_CERT_CLUSTER_DOMAIN>>
+    - host: minio.<<VAR_CERT_CLUSTER_DOMAIN>>
       http:
         paths:
           - path: /
