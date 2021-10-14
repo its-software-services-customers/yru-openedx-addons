@@ -4,7 +4,7 @@ echo ""
 echo "### Setup MinIO ###"
 
 NS=minio-operator
-VERSION=v4.2.10
+VERSION=v4.2.14
 GIT_URL=https://github.com/minio/operator/?ref=${VERSION}
 
 kubectl apply -k ${GIT_URL}
