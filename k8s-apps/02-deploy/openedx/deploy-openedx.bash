@@ -26,7 +26,7 @@ tutor config save \
     --set CMS_HOST=studio.${VAR_CERT_CLUSTER_DOMAIN} \
     --set LMS_HOST=${VAR_CERT_CLUSTER_DOMAIN} \
     --set CONTACT_EMAIL=dounpct@gmail.com \
-    --set LANGUAGE_CODE=th \
+    --set LANGUAGE_CODE=en \
     --set PLATFORM_NAME=yru-mooc-oedx
 
 
