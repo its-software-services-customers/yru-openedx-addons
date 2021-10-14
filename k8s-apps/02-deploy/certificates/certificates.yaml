@@ -47,11 +47,11 @@ certificates:
 #    namespace: platform-monitor
 #    domain: yru
 
-  - name: mopr
-    secretName: minio-operator-cert
-    issuerRef: lets-encrypt-issuer
-    namespace: minio-operator
-    domain: yru
+#  - name: mopr
+#    secretName: minio-operator-cert
+#    issuerRef: lets-encrypt-issuer
+#    namespace: minio-operator
+#    domain: yru
     
   - name: minio
     secretName: minio-cert
