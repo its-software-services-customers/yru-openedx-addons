@@ -27,7 +27,7 @@ tutor config save \
     --set LMS_HOST=${VAR_CERT_CLUSTER_DOMAIN} \
     --set CONTACT_EMAIL=dounpct@gmail.com \
     --set LANGUAGE_CODE=en \
-    --set PLATFORM_NAME=yru-mooc-oedx
+    --set PLATFORM_NAME="MOOC-YRU"
 
 
 mkdir -p "${PLUGIN_ROOT}"
@@ -107,6 +107,12 @@ tutor plugins enable custom-resources
 tutor config save
 tutor config save --set DOCKER_IMAGE_OPENEDX=gcr.io/its-artifact-commons/yru-openedx-docker:${VAR_DOCKER_VERSION}
 
+tutor plugins enable minio
+tutor config save \
+  --set OPENEDX_AWS_ACCESS_KEY=${MINIO_ACCESS_KEY} \
+  --set OPENEDX_AWS_SECRET_ACCESS_KEY=${MINIO_SECRET_KEY} \
+  --set MINIO_HOST=minio-openedx.${VAR_CERT_CLUSTER_DOMAIN}
+ 
 # tutor k8s stop
 tutor k8s quickstart
 
