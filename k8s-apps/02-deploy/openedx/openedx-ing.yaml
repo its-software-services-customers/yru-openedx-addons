@@ -70,3 +70,15 @@ spec:
                 name: minio
                 port:
                   number: 9000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-custom
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: minio
