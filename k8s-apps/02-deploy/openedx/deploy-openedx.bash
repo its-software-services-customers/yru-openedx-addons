@@ -22,7 +22,7 @@ echo "This to root path configuration: ${CONFIG_ROOT}"
 # --------------------------
 
 tutor config save \
-    --set ENABLE_HTTPS=false \
+    --set ENABLE_HTTPS=true \
     --set CMS_HOST=studio.${VAR_CERT_CLUSTER_DOMAIN} \
     --set LMS_HOST=${VAR_CERT_CLUSTER_DOMAIN} \
     --set CONTACT_EMAIL=dounpct@gmail.com \
@@ -111,7 +111,7 @@ tutor plugins enable minio
 tutor config save \
   --set OPENEDX_AWS_ACCESS_KEY=${MINIO_ACCESS_KEY} \
   --set OPENEDX_AWS_SECRET_ACCESS_KEY=${MINIO_SECRET_KEY} \
-  --set MINIO_HOST=minio.yru-oedx-t.its-software-services.com
+  --set MINIO_HOST=minio.${VAR_CERT_CLUSTER_DOMAIN}
 
 #minio.openedx.svc.cluster.local
 #minio.${VAR_CERT_CLUSTER_DOMAIN}

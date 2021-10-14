@@ -4,7 +4,7 @@ kind: Ingress
 metadata:
   name: openedx-ing
   annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: HTTP  
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
@@ -21,14 +21,14 @@ spec:
               service:
                 name: caddy
                 port:
-                  number: 80
+                  number: 443 #80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: studio-openedx-ing
   annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: HTTP  
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
@@ -45,16 +45,15 @@ spec:
               service:
                 name: caddy
                 port:
-                  number: 80
+                  number: 443 #80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: minio-ing
   annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: HTTP  
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
     kubernetes.io/ingress.class: "nginx"
-    nginx.org/hsts: "true"
 spec:
   tls:
     - hosts:
@@ -71,4 +70,3 @@ spec:
                 name: minio
                 port:
                   number: 9000
-
