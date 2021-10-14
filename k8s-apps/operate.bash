@@ -22,7 +22,7 @@ if [ -z "${KUBECONFIG}" ]; then
     exit 1
 fi
 
-ENV=$1
+ENV=${ENVIRONMENT} #defined in .bashrc
 ACTION=$2
 COMPONENT=$3
 
