@@ -23,6 +23,7 @@ echo "This to root path configuration: ${CONFIG_ROOT}"
 
 tutor config save \
     --set ENABLE_HTTPS=true \
+    --set RUN_CADDY=false \
     --set CMS_HOST=studio.${VAR_CERT_CLUSTER_DOMAIN} \
     --set LMS_HOST=${VAR_CERT_CLUSTER_DOMAIN} \
     --set CONTACT_EMAIL=dounpct@gmail.com \
