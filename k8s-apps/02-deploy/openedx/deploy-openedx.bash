@@ -111,10 +111,10 @@ tutor plugins enable minio
 tutor config save \
   --set OPENEDX_AWS_ACCESS_KEY=${MINIO_ACCESS_KEY} \
   --set OPENEDX_AWS_SECRET_ACCESS_KEY=${MINIO_SECRET_KEY} \
-  --set ENABLE_HTTPS=true \
-  --set MINIO_HOST=minio.${VAR_CERT_CLUSTER_DOMAIN}
+  --set MINIO_HOST=minio.openedx.svc.cluster.local
 
 #minio.openedx.svc.cluster.local
+#minio.${VAR_CERT_CLUSTER_DOMAIN}
 
 # tutor k8s stop
 tutor k8s quickstart
