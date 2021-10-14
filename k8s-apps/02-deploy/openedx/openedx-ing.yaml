@@ -54,6 +54,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTP  
     kubernetes.io/ingress.class: "nginx"
+    nginx.org/hsts: true
 spec:
   tls:
     - hosts:
