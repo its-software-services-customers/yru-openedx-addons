@@ -35,34 +35,28 @@ certificates:
     namespace: loki-log
     domain: yru
 
-  - name: prometheus-platform
-    secretName: prometheus-platform-cert
-    issuerRef: lets-encrypt-issuer
-    namespace: platform-monitor
-    domain: yru
+#  - name: prometheus-platform
+#    secretName: prometheus-platform-cert
+#    issuerRef: lets-encrypt-issuer
+#    namespace: platform-monitor
+#    domain: yru
 
-  - name: grafana-platform
-    secretName: grafana-platform-cert
-    issuerRef: lets-encrypt-issuer
-    namespace: platform-monitor
-    domain: yru
+#  - name: grafana-platform
+#    secretName: grafana-platform-cert
+#    issuerRef: lets-encrypt-issuer
+#    namespace: platform-monitor
+#    domain: yru
 
-  - name: mopr
-    secretName: minio-operator-cert
-    issuerRef: lets-encrypt-issuer
-    namespace: minio-operator
-    domain: yru
-
-  - name: minio-openedx
-    secretName: minio-openedx-cert
-    issuerRef: lets-encrypt-issuer
-    namespace: minio-openedx
-    domain: yru
+#  - name: mopr
+#    secretName: minio-operator-cert
+#    issuerRef: lets-encrypt-issuer
+#    namespace: minio-operator
+#    domain: yru
     
-  - name: minio-console
-    secretName: minio-console-cert
+  - name: minio
+    secretName: minio-cert
     issuerRef: lets-encrypt-issuer
-    namespace: minio-openedx
+    namespace: openedx
     domain: yru
 
   - name: root

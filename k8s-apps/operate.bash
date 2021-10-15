@@ -22,7 +22,7 @@ if [ -z "${KUBECONFIG}" ]; then
     exit 1
 fi
 
-ENV=$1
+ENV=${ENVIRONMENT} #defined in .bashrc
 ACTION=$2
 COMPONENT=$3
 
@@ -50,7 +50,7 @@ if [ "$ACTION" = 'setup' ]; then
     if [[ $COMPONENT =~ ^(cert-manager|all)$ ]]; 
     then
         cd 01-setup/cert-manager; ./setup-cert-manager.bash; cd ${CWD}
-    fi
+    fi 
 fi
 
 if [ "$ACTION" = 'deploy' ]; then
@@ -78,7 +78,7 @@ if [ "$ACTION" = 'deploy' ]; then
     then
         cd 02-deploy/openedx; ./deploy-openedx.bash; cd ${CWD}
     fi
-
+    
     # Put this to very last
     if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
     then
