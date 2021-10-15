@@ -52,16 +52,6 @@ MESSAGES
 tutor plugins enable change-cors
 
 
-cat <<MESSAGES > ${PLUGIN_ROOT}/cms-setting.yml
-name: cms-setting
-version: 0.1.0
-patches:
-  openedx-cms-production-settings: |
-    MAX_ASSET_UPLOAD_FILE_SIZE_IN_MB = 100
-MESSAGES
-tutor plugins enable cms-setting
-
-
 cat <<MESSAGES > ${CONFIG_ROOT}/env/k8s/deployments-extend.yml
 apiVersion: v1
 kind: PersistentVolumeClaim
