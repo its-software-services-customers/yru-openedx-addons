@@ -52,6 +52,16 @@ MESSAGES
 tutor plugins enable change-cors
 
 
+cat <<MESSAGES > ${PLUGIN_ROOT}/cms-setting.yml
+name: cms-setting
+version: 0.1.0
+patches:
+  openedx-cms-production-settings: |
+    MAX_ASSET_UPLOAD_FILE_SIZE_IN_MB = 100
+MESSAGES
+tutor plugins enable cms-setting
+
+
 cat <<MESSAGES > ${CONFIG_ROOT}/env/k8s/deployments-extend.yml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -113,9 +123,6 @@ tutor config save \
   --set OPENEDX_AWS_ACCESS_KEY=${MINIO_ACCESS_KEY} \
   --set OPENEDX_AWS_SECRET_ACCESS_KEY=${MINIO_SECRET_KEY} \
   --set MINIO_HOST=minio.${VAR_CERT_CLUSTER_DOMAIN}
-
-#minio.openedx.svc.cluster.local
-#minio.${VAR_CERT_CLUSTER_DOMAIN}
 
 # tutor k8s stop
 tutor k8s quickstart
