@@ -114,6 +114,15 @@ tutor config save \
   --set OPENEDX_AWS_SECRET_ACCESS_KEY=${MINIO_SECRET_KEY} \
   --set MINIO_HOST=minio.${VAR_CERT_CLUSTER_DOMAIN}
 
+
+tutor config save \
+    --set SMTP_HOST=smtp.gmail.com \
+    --set SMTP_PORT=587 \
+    --set SMTP_USERNAME=${SMTP_USER} \
+    --set SMTP_PASSWORD=${SMTP_PASSWORD} \
+    --set SMTP_USE_TLS=true \
+    --set SMTP_USE_SSL=false
+
 # tutor k8s stop
 tutor k8s quickstart
 
