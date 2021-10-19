@@ -79,6 +79,11 @@ if [ "$ACTION" = 'deploy' ]; then
         cd 02-deploy/openedx; ./deploy-openedx.bash; cd ${CWD}
     fi
     
+    if [[ $COMPONENT =~ ^(velero|all)$ ]];
+    then
+        cd 02-deploy/velero; ./deploy-velero.bash; cd ${CWD}
+    fi
+
     # Put this to very last
     if [[ $COMPONENT =~ ^(certificates|all)$ ]]; 
     then

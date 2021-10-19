@@ -27,6 +27,10 @@ charts:
     chartUrl: https://external-secrets.github.io/kubernetes-external-secrets/
     version: 8.3.0
 
+  velero:
+    chartUrl: https://vmware-tanzu.github.io/helm-charts/
+    version: 2.24.0
+
   helm-loki:
     chartUrl: https://its-software-services-devops.github.io/helm-loki/
     version: 1.1.2
@@ -75,4 +79,12 @@ infraIasc:
     toDir: 02-deploy/loki-log
     namespace: loki-log
     template: loki-log
+    values: []
+
+  - valuesFiles: [02-deploy/velero/velero.yaml]
+    alias: rendered-velero
+    chartId: velero
+    toDir: 02-deploy/velero
+    namespace: velero
+    template: velero
     values: []
