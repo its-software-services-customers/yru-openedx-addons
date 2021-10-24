@@ -1,0 +1,8 @@
+---
+snapshotsEnabled: false
+backupsEnabled : false
+
+deployRestic: true
+
+configuration:
+  provider: gcp
