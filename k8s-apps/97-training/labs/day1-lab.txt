@@ -19,3 +19,5 @@ env | grep KUBECONFIG
 vi /home/yruadmin/rke-addons/kubeconfig
 
 kubectl get ns
+
+kubectl scale --replicas=10 deployment/nginx-deployment -n yru-demo
