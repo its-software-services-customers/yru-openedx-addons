@@ -1,0 +1,6 @@
+1. Should we keep "kubeconfig" to be secret?
+2. How importance of the "KUBECONFIG" env variable?
+3. How to view the certificate & key in kubeconfig file?
+4. Where is the kube-apiserver HTTP end point?
+5. How does "kubectl" know where the kube-apiserver to connect to?
+6. Which component is comparable to the brain of Kubernetes?
