@@ -10,8 +10,7 @@ spec:
     targetPort: 8080
     protocol: TCP
   selector:
-    matchLabels:
-      app: echoserver
+    app: echoserver
 ---
 apiVersion: v1
 kind: Service
@@ -21,8 +20,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    matchLabels:
-      app: echoserver    
+    app: echoserver
   ports:
   - port: 80
     targetPort: 8080
