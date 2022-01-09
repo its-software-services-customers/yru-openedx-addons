@@ -42,10 +42,21 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-            - name: nginx-conf
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
-              readOnly: true
+          - name: nginx-conf
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
+            readOnly: true
+        env:
+          - name: TEST_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: nginx-secret
+                key: username
+          - name: TEST_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: nginx-secret
+                key: password              
       volumes:
       - name: nginx-conf
         configMap:
@@ -53,7 +64,6 @@ spec:
           items:
             - key: nginx.conf
               path: nginx.conf
-
 ---
 apiVersion: v1
 kind: Service
@@ -69,3 +79,13 @@ spec:
     nodePort: 30008
   selector:
     app: nginx
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nginx-secret
+  namespace: yru-demo
+type: Opaque
+data:
+  username: YWRtaW4=
+  password: MWYyZDFlMmU2N2Rm
