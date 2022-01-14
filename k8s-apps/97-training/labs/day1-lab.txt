@@ -1,0 +1,23 @@
+kubectl get nodes
+kubectl get nodes -o wide
+kubectl describe nodes
+kubectl describe nodes rke-openedx-nonprod-master-01
+
+ssh yruadmin@10.10.5.10 # master node
+ps -ef | grep kubelet
+ps -ef | grep kube-apiserver
+ps -ef | grep etcd
+ps -ef | grep kube-controller-manager
+ps -ef | grep kube-proxy
+ps -ef | grep kube-scheduler
+
+docker logs kube-scheduler
+docker logs etcd
+docker logs etcd --since 1h
+
+env | grep KUBECONFIG
+vi /home/yruadmin/rke-addons/kubeconfig
+
+kubectl get ns
+
+kubectl scale --replicas=10 deployment/nginx-deployment -n yru-demo
