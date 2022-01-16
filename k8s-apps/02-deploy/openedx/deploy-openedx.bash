@@ -1,5 +1,6 @@
 #!/bin/bash
 NS=openedx
+VERSION=12.2.0
 
 echo "####"
 echo "#### Deploying openedx to [${NS}] ####"
@@ -12,7 +13,7 @@ kubectl apply -f ${OUTPUT_FILE} -n ${NS}
 
 # --------------------------
 # download tutor
-sudo curl -L "https://github.com/overhangio/tutor/releases/download/v12.1.2/tutor-$(uname -s)_$(uname -m)" -o /usr/local/bin/tutor
+sudo curl -L "https://github.com/overhangio/tutor/releases/download/v${VERSION}/tutor-$(uname -s)_$(uname -m)" -o /usr/local/bin/tutor
 sudo chmod 0755 /usr/local/bin/tutor
 
 PLUGIN_ROOT="$(tutor plugins printroot)"
