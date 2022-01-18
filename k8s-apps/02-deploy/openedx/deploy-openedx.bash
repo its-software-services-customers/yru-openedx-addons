@@ -29,7 +29,6 @@ tutor config save \
     --set LMS_HOST=${VAR_CERT_CLUSTER_DOMAIN} \
     --set CONTACT_EMAIL=dounpct@gmail.com \
     --set LANGUAGE_CODE=en \
-    --set TIME_ZONE="Asia/Bangkok" \
     --set PLATFORM_NAME="MOOC-YRU"
 
 
