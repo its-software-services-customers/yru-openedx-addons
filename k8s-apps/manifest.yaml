@@ -87,4 +87,5 @@ infraIasc:
     toDir: 02-deploy/velero
     namespace: velero
     template: velero
-    values: []
+    values:
+      - --set-file credentials.secretContents.cloud=/mnt/c/Users/sutee.k/velero-v1.7.1-linux-amd64/credentials-velero-minio
