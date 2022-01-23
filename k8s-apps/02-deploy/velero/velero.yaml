@@ -2,7 +2,7 @@
 snapshotsEnabled: false
 backupsEnabled : false
 
-deployRestic: true
+deployRestic: false
 
 configuration:
   provider: gcp
