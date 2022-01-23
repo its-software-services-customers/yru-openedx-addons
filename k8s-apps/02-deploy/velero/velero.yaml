@@ -5,7 +5,6 @@ backupsEnabled : true
 deployRestic: false
 
 configuration:
-<<<<<<< HEAD
   provider: aws
   backupStorageLocation:
     bucket: velero
@@ -21,6 +20,3 @@ initContainers:
     volumeMounts:
       - mountPath: /target
         name: plugins
-=======
-  provider: gcp
->>>>>>> b28d44373c1ff9d1d6d3644b57498334452471d3
