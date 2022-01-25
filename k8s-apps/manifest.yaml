@@ -91,4 +91,4 @@ infraIasc:
     namespace: velero
     template: velero
     values:
-      - --set-file credentials.secretContents.cloud=/home/yruadmin/rke-addons/credentials-velero-minio.toml
+      - --set-file credentials.secretContents.cloud=/wip/output/credentials-velero-minio.toml
