@@ -38,6 +38,9 @@ charts:
 copy:
   - from: gs://yru-openedx-vault/${ENV.ENVIRONMENT}/secrets-${ENV.ENVIRONMENT}.txt
     toDir: ""
+  
+  - from: gs://yru-openedx-vault/${ENV.ENVIRONMENT}/credentials-velero-minio.toml
+    toDir: ""
 
 infraIasc:
   - valuesFiles: [01-setup/cert-manager/cert-manager.yaml]
@@ -88,4 +91,4 @@ infraIasc:
     namespace: velero
     template: velero
     values:
-      - --set-file credentials.secretContents.cloud=/mnt/c/Users/sutee.k/velero-v1.7.1-linux-amd64/credentials-velero-minio
+      - --set-file credentials.secretContents.cloud=/home/yruadmin/rke-addons/credentials-velero-minio.toml
