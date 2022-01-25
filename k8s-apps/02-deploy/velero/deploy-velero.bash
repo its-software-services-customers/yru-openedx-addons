@@ -13,4 +13,7 @@ sudo mv velero /usr/local/bin
 cd $tempdir
 
 kubectl create ns ${NS}
+
+#
+
 kubectl apply -f rendered-velero.yaml -n ${NS}

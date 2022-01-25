@@ -7,11 +7,11 @@ deployRestic: false
 configuration:
   provider: aws
   backupStorageLocation:
-    bucket: velero
+    bucket: yru-openedx-backup-nonprod
     config:
       region: minio
       s3ForcePathStyle: true
-      s3Url: http://35.187.250.214:9000
+      s3Url: http://10.10.5.9:9000
 
 initContainers:
   - name: velero-plugin-for-aws
