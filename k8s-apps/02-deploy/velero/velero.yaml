@@ -1,5 +1,5 @@
 ---
-snapshotsEnabled: false
+snapshotsEnabled: true
 backupsEnabled : true
 
 deployRestic: false
@@ -12,6 +12,8 @@ configuration:
       region: minio
       s3ForcePathStyle: true
       s3Url: http://10.10.5.9:9000
+  volumeSnapshotLocation:
+    provider: vsphere
 
 initContainers:
   - name: velero-plugin-for-aws
