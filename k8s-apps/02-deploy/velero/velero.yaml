@@ -13,7 +13,7 @@ configuration:
       s3ForcePathStyle: true
       s3Url: http://10.10.5.9:9000
   volumeSnapshotLocation:
-    provider: vsphere
+    provider: velero.io/vsphere
 
 initContainers:
   - name: velero-plugin-for-aws
