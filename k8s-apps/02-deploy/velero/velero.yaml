@@ -7,7 +7,7 @@ deployRestic: false
 configuration:
   provider: aws
   backupStorageLocation:
-    bucket: yru-openedx-backup-nonprod
+    bucket: <<VAR_VELERO_BUCKRT>>
     config:
       region: minio
       s3ForcePathStyle: true

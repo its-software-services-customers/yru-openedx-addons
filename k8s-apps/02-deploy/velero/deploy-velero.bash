@@ -16,4 +16,6 @@ kubectl create ns ${NS}
 
 #
 
-kubectl apply -f rendered-velero.yaml -n ${NS}
+OUTPUT_FILE=rendered-velero.yaml
+sed -i "s#<<VAR_VELERO_BUCKRT>>#${VAR_VELERO_BUCKRT}#g" ${OUTPUT_FILE}
+kubectl apply -f ${OUTPUT_FILE} -n ${NS}
