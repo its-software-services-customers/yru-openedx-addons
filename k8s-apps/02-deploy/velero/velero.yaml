@@ -1,8 +1,24 @@
 ---
 snapshotsEnabled: false
-backupsEnabled : false
+backupsEnabled : true
 
-deployRestic: true
+deployRestic: false
 
 configuration:
-  provider: gcp
+  provider: aws
+  backupStorageLocation:
+    bucket: <<VAR_VELERO_BUCKRT>>
+    config:
+      region: minio
+      s3ForcePathStyle: true
+      s3Url: http://10.10.5.9:9000
+  # volumeSnapshotLocation:
+  #   provider: vsphere
+
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.3.0
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins

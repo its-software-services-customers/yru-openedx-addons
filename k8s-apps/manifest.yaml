@@ -17,7 +17,7 @@ charts:
 
   cert-manager:
     chartUrl: https://charts.jetstack.io
-    version: 1.3.1
+    version: 1.10.0
 
   helm-cluster-certificates:
     chartUrl: https://its-software-services-devops.github.io/helm-cluster-certificates/
@@ -37,6 +37,9 @@ charts:
 
 copy:
   - from: gs://yru-openedx-vault/${ENV.ENVIRONMENT}/secrets-${ENV.ENVIRONMENT}.txt
+    toDir: ""
+  
+  - from: gs://yru-openedx-vault/${ENV.ENVIRONMENT}/credentials-velero-minio.toml
     toDir: ""
 
 infraIasc:
@@ -87,4 +90,5 @@ infraIasc:
     toDir: 02-deploy/velero
     namespace: velero
     template: velero
-    values: []
+    values:
+      - --set-file credentials.secretContents.cloud=/wip/output/credentials-velero-minio.toml
